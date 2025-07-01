@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import Header from "./components/Header";
 
 /* NOTE lazy loading of pages */
 const Quiz = lazy(() => import("./pages/Quiz"));
@@ -11,10 +12,10 @@ const TextToPhonetic = lazy(() => import("./pages/TextToAlphabet"));
 function App() {
   return (
     <>
-
       {/* NOTE BrowserRouter for changing between pages */}
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
+          <Header />
           <Routes>
             <Route path="/flashcards" element={<FlashCards />} />
             <Route path="/quiz" element={<Quiz />} />

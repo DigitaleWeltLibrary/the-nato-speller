@@ -1,0 +1,25 @@
+.header {
+    $color : #2563EB;
+
+    padding: .5rem 2rem;
+    width: min(calc(100dvw - 2rem), 600px);
+    display: grid;
+    margin: 0 auto 1rem;
+    border: $color 4px solid;
+    border-top: none;
+    border-radius: 0 0 .5rem .5rem;
+    grid-template-columns: 50px 1fr;
+    align-items: center;
+    background: rgb($color, .25);
+    color: $color;
+
+    select {
+        width: 100%;
+        cursor: pointer;
+        color: $color;
+        outline: none;
+        border: none;
+        font-size: 1.5rem;
+        background: transparent;
+    }
+}

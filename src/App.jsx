@@ -16,12 +16,15 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
-          <Routes>
-            <Route path="/flashcards" element={<FlashCards />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/texttoalphabet" element={<TextToPhonetic />} />
-            {/* NOTE redirect not known paths to flashcards */}
-            <Route path="*" element={<Navigate to="/flashcards" replace />} />          </Routes>
+          <main>
+            <Routes>
+              <Route path="/flashcards" element={<FlashCards />} />
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/texttoalphabet" element={<TextToPhonetic />} />
+              {/* NOTE redirect not known paths to flashcards */}
+              <Route path="*" element={<Navigate to="/flashcards" replace />} />
+            </Routes>
+          </main>
         </Suspense >
       </BrowserRouter>
     </>

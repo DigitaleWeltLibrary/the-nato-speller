@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   background: #F0F4F8;
+
+  main {
+    width: min(calc(100dvw - 2rem), 1600px);
+    margin: 0 auto;
+
+    h1 {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #2563EB;
+    }
+  }
 }

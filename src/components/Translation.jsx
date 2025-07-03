@@ -3,9 +3,10 @@ import { getword } from "../utils/getword.js"
 
 
 export default function Translation({ words }) {
-
+    /* NOTE string state for translation */
     const [getWords, setWords] = useState([])
 
+    /* NOTE translates the letters into nato alphabet */
     useEffect(() => {
         const alphabetwords = []
 
@@ -22,8 +23,8 @@ export default function Translation({ words }) {
 
 
 
-    return <p>
-        {getWords.map((word, index) => <span key={index}>{word}</span>)}
-    </p>
+    return <div>
+        {getWords.map((word, index) => <p key={index}><span>{word[0]}</span>{word.slice(1)}</p>)}
+    </div>
 
 }

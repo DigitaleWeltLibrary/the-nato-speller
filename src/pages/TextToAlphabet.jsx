@@ -1,5 +1,7 @@
 import { useState } from "react";
 import TranslateTextarea from "../components/TranslateTextarea";
+import Translation from "../components/Translation";
+import style from "../style/texttoalphabet.module.scss"
 
 export default function TextToAlphabet() {
 
@@ -14,11 +16,14 @@ export default function TextToAlphabet() {
                 TextToAlphabet
             </h1>
 
-            <article>
+            <article className={style.texttoalphabet}>
                 <TranslateTextarea
                     settextstate={settextstate}
                 />
-                {gettext.map(word => word + " + ")}
+
+                <Translation
+                    words={gettext}
+                />
             </article>
         </>
     )

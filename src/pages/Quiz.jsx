@@ -17,7 +17,7 @@ export default function Quiz() {
                 Quiz
             </h1>
 
-            <article classname={style.quiz}>
+            <article >
 
                 {
                     getstart ?
@@ -25,9 +25,11 @@ export default function Quiz() {
                             setquiztext={setquiztext}
                             setstart={setstart}
                             getquiztext={getquiztext}
+                            style={style}
                         />
                         :
                         <QuizForm
+                            style={style}
                             getquiztext={getquiztext}
                             setstart={setstart}
                         />

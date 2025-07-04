@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import QuizHeader from "./QuizHeader";
 
-export default function QuizForm({ getquiztext, setstart }) {
+export default function QuizForm({ getquiztext, setstart, style }) {
 
     /* NOTE text to word array*/
     const words = getquiztext.split(" ")
@@ -29,16 +29,17 @@ export default function QuizForm({ getquiztext, setstart }) {
         'O': faO, 'P': faP, 'Q': faQ, 'R': faR, 'S': faS, 'T': faT, 'U': faU,
         'V': faV, 'W': faW, 'X': faX, 'Y': faY, 'Z': faZ
     };
-    
+
     /* NOTE map letters to icons */
     const geticon = (letter) => iconMap[letter.toUpperCase()];
 
 
     return (
-        <section className="quiz">
+        <section>
             <QuizHeader
                 getquiztext={getquiztext}
                 setstart={setstart}
+                style={style}
             />
 
             <article>

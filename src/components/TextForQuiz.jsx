@@ -1,9 +1,10 @@
-export default function TextForQuiz({ setquiztext, setstart, getquiztext }) {
+export default function TextForQuiz({ setquiztext, setstart, getquiztext, style }) {
     return (
-        <header>
+        <header className={style.quizheader}>
             <input
                 onChange={(e) => setquiztext(e.target.value.trim())}
                 type="text"
+                placeholder="Type text for translation ..."
             />
             <button
                 onClick={() => setstart(false)}

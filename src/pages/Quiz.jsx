@@ -1,9 +1,13 @@
 import { useState } from "react"
 import TextForQuiz from "../components/TextForQuiz"
+import QuizForm from "../components/QuizForm"
+import style from "../style/quiz.module.scss"
 
 export default function Quiz() {
-
+    /* NOTE state for quiz text */
     const [getquiztext, setquiztext] = useState("")
+
+    /* NOTE statefor starting the quiz */
     const [getstart, setstart] = useState(true)
 
 
@@ -13,7 +17,7 @@ export default function Quiz() {
                 Quiz
             </h1>
 
-            <article>
+            <article classname={style.quiz}>
 
                 {
                     getstart ?
@@ -23,7 +27,10 @@ export default function Quiz() {
                             getquiztext={getquiztext}
                         />
                         :
-                        <p>{getquiztext}</p>
+                        <QuizForm
+                            getquiztext={getquiztext}
+                            setstart={setstart}
+                        />
                 }
 
             </article>

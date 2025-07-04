@@ -1,6 +1,6 @@
 export default function TextForQuiz({ setquiztext, setstart, getquiztext }) {
     return (
-        <section>
+        <header>
             <input
                 onChange={(e) => setquiztext(e.target.value.trim())}
                 type="text"
@@ -9,6 +9,6 @@ export default function TextForQuiz({ setquiztext, setstart, getquiztext }) {
                 onClick={() => setstart(false)}
                 disabled={getquiztext.length == 0}
             >start</button>
-        </section>
+        </header>
     )
 }

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import QuizHeader from "./QuizHeader";
 
-export default function QuizForm({ getquiztext, setstart, style }) {
+export default function QuizForm({ getquiztext, setstart, style, setquiztext }) {
 
     /* NOTE text to word array*/
     const words = getquiztext.split(" ")
@@ -40,6 +40,7 @@ export default function QuizForm({ getquiztext, setstart, style }) {
                 getquiztext={getquiztext}
                 setstart={setstart}
                 style={style}
+                setquiztext={setquiztext}
             />
 
             <article>

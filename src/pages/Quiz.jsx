@@ -32,6 +32,7 @@ export default function Quiz() {
                             style={style}
                             getquiztext={getquiztext}
                             setstart={setstart}
+                            setquiztext={setquiztext}
                         />
                 }
 

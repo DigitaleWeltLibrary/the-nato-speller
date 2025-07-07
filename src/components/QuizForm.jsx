@@ -1,7 +1,8 @@
 import { faA, faB, faC, faD, faE, faF, faG, faH, faI, faJ, faK, faL, faM, faN, faO, faP, faQ, faR, faS, faT, faU, faV, faW, faX, faY, faZ } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import QuizHeader from "./QuizHeader";
+import { getword } from "../utils/getword"
 
 export default function QuizForm({ getquiztext, setstart, style, setquiztext }) {
 
@@ -13,12 +14,15 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
         () => new Array(words.length).fill("")
     )
 
-    /* NOTE set user input to state */
-    const changeuserinput = (e, i) => {
-        const newValue = e.target.value
+    /* NOTE get user input */
+    const getuserinputbyindex = (index) => {
+        return getuserinput[index];
+    }
 
+    /* NOTE set user input */
+    const setuserinputbyindex = (index, value) => {
         const inputs = [...getuserinput]
-        inputs[i] = newValue
+        inputs[index] = value
         setuserinput(inputs)
     }
 
@@ -33,7 +37,6 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
     /* NOTE map letters to icons */
     const geticon = (letter) => iconMap[letter.toUpperCase()];
 
-
     return (
         <section>
             <QuizHeader
@@ -44,41 +47,70 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
             />
 
             <article>
-                {
-                    words.map((word, i) => {
 
-                        const userInputForComparison = getuserinput[i]?.toLowerCase().trim()
-                        const wordForComparison = word.toLowerCase()
+
+                {
+                    words.map((word, wordindex) => {
+
+                        const letters = word.split("")
 
                         return (
-                            userInputForComparison == wordForComparison
-                                ?
-                                <>
-                                    <FontAwesomeIcon
-                                        icon={geticon(word[0])}
-                                        size="2x"
-                                        key={`icon${i}`}
-                                    />
-                                    <p key={i}>{word}</p>
-                                </>
-                                :
-                                <>
-                                    <FontAwesomeIcon
-                                        icon={geticon(word[0])}
-                                        size="2x"
-                                        key={`icon${i}`}
-                                    />
-                                    <input
-                                        key={i}
-                                        type="text"
-                                        onChange={(e) => changeuserinput(e, i)}
-                                    />
-                                </>
+                            <>
+                                {
+                                    letters.map((letter, letterindex) => {
+
+                                        const jsonword = getword(letter)
+                                        let userinput = getuserinputbyindex(letterindex)
+                                        let rightword
+
+                                        if (userinput) {
+                                            userinput = userinput[0]?.toUpperCase() + userinput?.slice(1)
+                                            rightword = userinput == jsonword
+                                        } else rightword = false
+
+
+                                        return (
+
+                                            rightword ?
+                                                <>
+                                                    <FontAwesomeIcon
+                                                        icon={geticon(letter)}
+                                                        size="2x"
+                                                        key={`icon${wordindex}`}
+                                                    />
+                                                    <p key={wordindex}>{getword(letter)}</p>
+
+                                                </>
+                                                :
+                                                <>
+                                                    <FontAwesomeIcon
+                                                        icon={geticon(letter)}
+                                                        size="2x"
+                                                        key={`icon${letterindex}`}
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        value={getuserinput[letterindex]}
+                                                        onChange={(e) => setuserinputbyindex(letterindex, e.target.value)}
+                                                        key={letterindex}
+                                                    />
+
+                                                </>
+                                        )
+
+                                    }
+                                    )
+                                }
+
+                                {wordindex < words.length - 1 && <p>(SPACE)</p>}
+
+                            </>
 
                         )
                     })
                 }
-            </article>
+
+            </article >
         </section>
     )
 }

@@ -1,6 +1,6 @@
 import { faA, faB, faC, faD, faE, faF, faG, faH, faI, faJ, faK, faL, faM, faN, faO, faP, faQ, faR, faS, faT, faU, faV, faW, faX, faY, faZ } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  useState } from "react";
+import { useState } from "react";
 import QuizHeader from "./QuizHeader";
 import { getword } from "../utils/getword"
 
@@ -13,6 +13,7 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
     const [getuserinput, setuserinput] = useState(
         () => new Array(words.length).fill("")
     )
+
 
     /* NOTE get user input */
     const getuserinputbyindex = (index) => {
@@ -46,7 +47,7 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
                 setquiztext={setquiztext}
             />
 
-            <article>
+            <article className={style.quizsection}>
 
 
                 {
@@ -72,7 +73,7 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
                                         return (
 
                                             rightword ?
-                                                <>
+                                                <div>
                                                     <FontAwesomeIcon
                                                         icon={geticon(letter)}
                                                         size="2x"
@@ -80,9 +81,9 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
                                                     />
                                                     <p key={wordindex}>{getword(letter)}</p>
 
-                                                </>
+                                                </div>
                                                 :
-                                                <>
+                                                <div>
                                                     <FontAwesomeIcon
                                                         icon={geticon(letter)}
                                                         size="2x"
@@ -93,16 +94,17 @@ export default function QuizForm({ getquiztext, setstart, style, setquiztext }) 
                                                         value={getuserinput[letterindex]}
                                                         onChange={(e) => setuserinputbyindex(letterindex, e.target.value)}
                                                         key={letterindex}
+                                                        placeholder="type here..."
                                                     />
 
-                                                </>
+                                                </div>
                                         )
 
                                     }
                                     )
                                 }
 
-                                {wordindex < words.length - 1 && <p>(SPACE)</p>}
+                                {wordindex < words.length - 1 && <p className={style.space}>(SPACE)</p>}
 
                             </>
 

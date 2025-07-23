@@ -1,107 +1,80 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import QuizHeader from "./QuizHeader";
-import { getword } from "../utils/getword"
+import { getword } from "../utils/getword";
 import geticon from "../utils/geticon";
 
-export default function QuizForm({ getquiztext, setstart, style, setquiztext }) {
+export default function QuizForm({
+  getquiztext,
+  setstart,
+  style,
+  setquiztext,
+}) {
+  /* NOTE letters of the text */
+  const letters = getquiztext.split("");
 
-    /* NOTE text to word array*/
-    const words = getquiztext.split(" ")
+  /* NOTE nato words array */
+  const natoWords = letters.map((letter) => {
+    return letter == " " ? "(space)" : getword(letter);
+  });
 
-    /* NOTE initialize state with string array */
-    const [getuserinput, setuserinput] = useState(
-        () => new Array(words.length).fill("")
-    )
+  /* NOTE user input state */
+  const [userInput, setUserInput] = useState(() =>
+    Array(letters.length).fill("")
+  );
 
+  /* NOTE set new user input */
+  const setnewinput = (index, value) => {
+    const newInput = [...userInput];
+    let newvalue = value?.trim();
+    newvalue = newvalue[0].toUpperCase() + newvalue.slice(1).toLowerCase();
 
-    /* NOTE get user input */
-    const getuserinputbyindex = (index) => {
-        return getuserinput[index];
+    if (newvalue != "") {
+      newInput[index] = newvalue;
+      setUserInput(newInput);
     }
+  };
 
-    /* NOTE set user input */
-    const setuserinputbyindex = (index, value) => {
-        const inputs = [...getuserinput]
-        inputs[index] = value
-        setuserinput(inputs)
-    }
+  return (
+    <section>
+      <QuizHeader
+        getquiztext={getquiztext}
+        setstart={setstart}
+        style={style}
+        setquiztext={setquiztext}
+      />
 
-    return (
-        <section>
-            <QuizHeader
-                getquiztext={getquiztext}
-                setstart={setstart}
-                style={style}
-                setquiztext={setquiztext}
-            />
-
-            <article className={style.quizsection}>
-
-
-                {
-                    words.map((word, wordindex) => {
-
-                        const letters = word.split("")
-
-                        return (
-                            <>
-                                {
-                                    letters.map((letter, letterindex) => {
-
-                                        const jsonword = getword(letter)
-                                        let userinput = getuserinputbyindex(letterindex)
-                                        let rightword
-
-                                        if (userinput) {
-                                            userinput = userinput[0]?.toUpperCase() + userinput?.slice(1)
-                                            rightword = userinput == jsonword
-                                        } else rightword = false
-
-
-                                        return (
-
-                                            rightword ?
-                                                <div>
-                                                    <FontAwesomeIcon
-                                                        icon={geticon(letter)}
-                                                        size="2x"
-                                                        key={`icon${wordindex}`}
-                                                    />
-                                                    <p key={wordindex}>{getword(letter)}</p>
-
-                                                </div>
-                                                :
-                                                <div>
-                                                    <FontAwesomeIcon
-                                                        icon={geticon(letter)}
-                                                        size="2x"
-                                                        key={`icon${letterindex}`}
-                                                    />
-                                                    <input
-                                                        type="text"
-                                                        value={getuserinput[letterindex]}
-                                                        onChange={(e) => setuserinputbyindex(letterindex, e.target.value)}
-                                                        key={letterindex}
-                                                        placeholder="type here..."
-                                                    />
-
-                                                </div>
-                                        )
-
-                                    }
-                                    )
-                                }
-
-                                {wordindex < words.length - 1 && <p className={style.space}>(SPACE)</p>}
-
-                            </>
-
-                        )
-                    })
-                }
-
-            </article >
-        </section>
-    )
+      <article className={style.quizsection}>
+        {letters.map((letter, index) => {
+          return (
+            <>
+              {natoWords[index] == "(space)" ? (
+                <p key={`space-${index}`} className={style.space}>
+                  (Space)
+                </p>
+              ) : (
+                <div key={`div-${index}`}>
+                  <FontAwesomeIcon
+                    icon={geticon(letter)}
+                    size="2x"
+                    key={`icon-${index}`}
+                  />
+                  {natoWords[index] == userInput[index] ? (
+                    <p key={`text-${index}`}>{natoWords[index]}</p>
+                  ) : (
+                    <input
+                      type="text"
+                      key={`input-${index}`}
+                      placeholder="type here..."
+                      onChange={(e) => setnewinput(index, e.target.value)}
+                    />
+                  )}
+                </div>
+              )}
+            </>
+          );
+        })}
+      </article>
+    </section>
+  );
 }

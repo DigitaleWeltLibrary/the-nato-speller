@@ -1,13 +1,12 @@
-import { lazy, Suspense } from "react"
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
+import "./style/fonts.scss";
 
 /* NOTE lazy loading of pages */
 const Quiz = lazy(() => import("./pages/Quiz"));
 const FlashCards = lazy(() => import("./pages/FlashCards"));
 const TextToPhonetic = lazy(() => import("./pages/TextToAlphabet"));
-
-
 
 function App() {
   return (
@@ -25,10 +24,10 @@ function App() {
               <Route path="*" element={<Navigate to="/flashcards" replace />} />
             </Routes>
           </main>
-        </Suspense >
+        </Suspense>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

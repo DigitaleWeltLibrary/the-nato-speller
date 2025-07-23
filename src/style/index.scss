@@ -5,17 +5,27 @@
 }
 
 body {
-  background: #F0F4F8;
+  background: #f0f4f8;
 
   main {
     width: min(calc(100dvw - 2rem), 1600px);
     margin: 0 auto;
-    padding: .5rem;
+    padding: 0.5rem;
+    font-family: "roboto", sans-serif;
 
     h1 {
       text-align: center;
       font-size: 1.5rem;
-      color: #2563EB;
+      color: #2563eb;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "itim", cursive;
     }
   }
 }

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import "./style/fonts.scss";
 
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       {/* NOTE BrowserRouter for changing between pages */}
-      <BrowserRouter>
+      <HashRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
           <main>
@@ -25,7 +25,7 @@ function App() {
             </Routes>
           </main>
         </Suspense>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }

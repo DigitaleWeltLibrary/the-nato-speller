@@ -1,10 +1,10 @@
-import { faComment, faLanguage, faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faBookAtlas, faCircleQuestion, faComment, faLanguage, faQuestion, faSignLanguage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom";
 import style from "../style/header.module.scss"
 
-export default function Header() {
+export default function Navigation() {
     /* NOTE initialize states */
     const navigate = useNavigate()
     const location = useLocation()
@@ -20,9 +20,9 @@ export default function Header() {
     /* NOTE dropdown items */
     const options = [
         /* NOTE path, name, icon */
-        ["flashcards", "Flash Cards", faComment],
-        ["quiz", "Quiz", faQuestion],
-        ["texttoalphabet", "Text To Alphabet", faLanguage]
+        ["flashcards", "Flash Cards", faBookAtlas],
+        ["texttoalphabet", "Text To Alphabet", faLanguage],
+        ["quiz", "Quiz", faCircleQuestion]
     ]
 
     /* NOTE change path location */
@@ -36,8 +36,8 @@ export default function Header() {
         [dropdown])
 
     return (
-        <header
-            className={style.header}
+        <nav
+            className={style.nav}
         >
 
             {geticon &&
@@ -66,6 +66,6 @@ export default function Header() {
                 })}
 
             </select>
-        </header >
+        </nav >
     )
 }

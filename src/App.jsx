@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
 import "./style/fonts.scss";
+import Navigation from "./components/Navigation";
 
 /* NOTE lazy loading of pages */
 const Quiz = lazy(() => import("./pages/Quiz"));
@@ -14,7 +14,7 @@ function App() {
       {/* NOTE BrowserRouter for changing between pages */}
       <HashRouter>
         <Suspense fallback={<div>Loading...</div>}>
-          <Header />
+          <Navigation />
           <main>
             <Routes>
               <Route path="/flashcards" element={<FlashCards />} />

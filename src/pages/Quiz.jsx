@@ -3,6 +3,7 @@ import TextForQuiz from "../components/TextForQuiz";
 import QuizForm from "../components/QuizForm";
 import style from "../style/quiz.module.scss";
 import changeTitle from "../utils/changetitle";
+import PageHeader from "../components/PageHeader";
 
 export default function Quiz() {
   /* NOTE state for quiz text */
@@ -16,7 +17,7 @@ export default function Quiz() {
 
   return (
     <>
-      <h1>Quiz</h1>
+      <PageHeader title="Quiz" text="Spell out the word using NATO alphabet" />
 
       <article>
         {getstart ? (

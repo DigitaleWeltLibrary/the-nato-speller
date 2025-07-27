@@ -1,5 +1,6 @@
 import alphabet from "../assets/alphabet.json";
 import FlashCard from "../components/FlashCard";
+import PageHeader from "../components/PageHeader";
 import style from "../style/flashcards.module.scss";
 import changeTitle from "../utils/changetitle";
 
@@ -9,7 +10,7 @@ export default function FlashCards() {
 
   return (
     <>
-      <h1>FlashCards</h1>
+      <PageHeader title="FlashCards" text="Browse the NATO phonetic alphabet" />
 
       <article className={style.flashcards}>
         {alphabet.alphabet.map(({ letter, word }, index) => {

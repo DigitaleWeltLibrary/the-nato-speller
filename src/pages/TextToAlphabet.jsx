@@ -3,6 +3,7 @@ import TranslateTextarea from "../components/TranslateTextarea";
 import Translation from "../components/Translation";
 import style from "../style/texttoalphabet.module.scss";
 import changeTitle from "../utils/changetitle";
+import PageHeader from "../components/PageHeader";
 
 export default function TextToAlphabet() {
   /* NOTE state to manage string array for translation */
@@ -16,7 +17,10 @@ export default function TextToAlphabet() {
 
   return (
     <>
-      <h1>Text To Alphabet</h1>
+      <PageHeader
+        title="Text To Alphabet"
+        text="Convert any text to NATO phonetic alphabet"
+      />
 
       <article className={style.texttoalphabet}>
         <TranslateTextarea settextstate={settextstate} />

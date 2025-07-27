@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TranslateTextarea from "../components/TranslateTextarea";
+import TranslateTextarea from "../components/TranslateInput";
 import Translation from "../components/Translation";
 import style from "../style/texttoalphabet.module.scss";
 import changeTitle from "../utils/changetitle";
@@ -23,9 +23,9 @@ export default function TextToAlphabet() {
       />
 
       <article className={style.texttoalphabet}>
-        <TranslateTextarea settextstate={settextstate} />
+        <TranslateTextarea style={style} settextstate={settextstate} />
 
-        {gettext.length > 0 && <Translation words={gettext} />}
+        {gettext.length > 0 && <Translation words={gettext} style={style} />}
       </article>
     </>
   );

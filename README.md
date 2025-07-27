@@ -68,3 +68,7 @@ In the quiz you have the option of entering a text and you are then asked how to
   * Vite
   * React
   * FontAwesomeIcon
+
+## Versions
+- V1.0: Full functionality with UI
+- V2.0: Full UI redesign

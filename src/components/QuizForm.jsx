@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import QuizHeader from "./QuizHeader";
 import { getword } from "../utils/getword";
 import geticon from "../utils/geticon";
@@ -10,7 +10,10 @@ export default function QuizForm({
   style,
   setquiztext,
 }) {
+  /* NOTE handle correct answers */
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  /* NOTE handle percentec of correct answers */
+  const [correctpercent, setCorrectPercent] = useState(0);
 
   /* NOTE letters of the text */
   const letters = getquiztext.split("");
@@ -37,6 +40,7 @@ export default function QuizForm({
     }
   };
 
+  /* NOTE count correct answers */
   useEffect(() => {
     let count = 0;
     letters.forEach((_letter, index) => {
@@ -49,6 +53,7 @@ export default function QuizForm({
       }
     });
     setCorrectAnswers(count);
+    setCorrectPercent(((count / natoWords.length) * 100).toFixed(2));
   }, [userInput, natoWords, letters]);
 
   return (
@@ -62,11 +67,11 @@ export default function QuizForm({
 
       <section
         className={style.quizresult}
-        style={{ "--percent": `${(correctAnswers / natoWords.length) * 100}%` }}
+        style={{ "--percent": `${correctpercent}%` }}
       >
         <p>
           You got {correctAnswers} out of {natoWords.length} words right, that's
-          {" " + (correctAnswers / natoWords.length) * 100}%.
+          {" " + correctpercent}%.
         </p>
       </section>
 

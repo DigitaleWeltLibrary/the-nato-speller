@@ -10,6 +10,46 @@ export default function QuizForm({
   style,
   setquiztext,
 }) {
+  /* NOTE letters and numbers */
+  const lettersandnumb = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+  ];
+
   /* NOTE handle correct answers */
   const [correctAnswers, setCorrectAnswers] = useState(0);
   /* NOTE handle percentec of correct answers */
@@ -43,8 +83,13 @@ export default function QuizForm({
   /* NOTE count correct answers */
   useEffect(() => {
     let count = 0;
+
     letters.forEach((_letter, index) => {
-      if (natoWords[index] === "(space)") count++;
+      if (
+        natoWords[index] === "(space)" ||
+        !lettersandnumb.includes(_letter)
+      )
+        count++;
       else if (
         natoWords[index] === userInput[index] &&
         userInput[index] !== ""
@@ -52,6 +97,7 @@ export default function QuizForm({
         count++;
       }
     });
+
     setCorrectAnswers(count);
     setCorrectPercent(((count / natoWords.length) * 100).toFixed(2));
   }, [userInput, natoWords, letters]);
@@ -81,10 +127,18 @@ export default function QuizForm({
 
           return (
             <>
-              {natoWords[index] == "(space)" ? (
-                <p key={`space-${index}`} className={style.space}>
-                  (Space)
-                </p>
+              {!lettersandnumb.includes(letters[index]) ? (
+                <>
+                  {natoWords[index] == "(space)" ? (
+                    <p key={`sign-${index}`} className={style.space}>
+                      (Space)
+                    </p>
+                  ) : (
+                    <p key={`sign-${index}`} className={style.space}>
+                      ({letters[index].toUpperCase()})
+                    </p>
+                  )}
+                </>
               ) : (
                 <div key={`div-${index}`}>
                   <FontAwesomeIcon
